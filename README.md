@@ -5,11 +5,13 @@
 | Column                     | Type   | Options     |
 | -------------------------- | ------ | ----------- |
 | nickname                   | string | null: false |
+| email                      | string | null: false |
 | encrypted_password         | string | null: false |
-| encrypted_password_confirm | string | null: false |
-| name                       | string | null: false |
-| name_kana                  | string | null: false |
-| birth                      | string | null: false |
+| family_name                | string | null: false |
+| first_name                 | string | null: false |
+| family_name_kana           | string | null: false |
+| first_name_kana            | string | null: false |
+| birth                      | date   | null: false |
 
 ### Association
 
@@ -18,34 +20,37 @@
 
 ## items テーブル
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| name       | string     | null: false                    |
-| price      | string     | null: false                    |
-| category   | text       | null: false                    |
-| status     | text       | null: false                    |
-| deli_price | string     | null: false                    |
-| area       | text       | null: false                    |
-| deli_day   | string     | null: false                    |
-| user_id    | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| name          | string     | null: false                    |
+| price         | integer    | null: false                    |
+| category_id   | integer    | null: false                    |
+| status_id     | integer    | null: false                    |
+| deli_price_id | integer    | null: false                    |
+| area_id       | integer    | null: false                    |
+| deli_day_id   | integer    | null: false                    |
+| user_id       | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_one :purchase
 - belongs_to :user
 
+## addresses テーブル
+
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| postal_code  | string     | null: false                    |
+| prefectures  | text       | null: false                    |
+| municipality | text       | null: false                    |
+| address      | string     | null: false                    |
+| building     | string     |                                |
+| phone_num    | string     | null: false                    |
+
 ## purchases テーブル
 
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
-| card_num     | string     | null: false                    |
-| limit        | string     | null: false                    |
-| security     | string     | null: false                    |
-| postal_code  | string     | null: false                    |
-| municipality | text       | null: false                    |
-| address      | string     | null: false                    |
-| building     | text       | null: false                    |
-| phone_num    | string     | null: false                    |
 | item_id      | references | null: false, foreign_key: true |
 | user_id      | references | null: false, foreign_key: true |
 
