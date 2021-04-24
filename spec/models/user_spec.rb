@@ -16,13 +16,13 @@ RSpec.describe User, type: :model do
         expect(@user).to be_valid
       end
       it 'family_nameとfirst_nameが全角文字なら登録できる' do
-        @user.family_name = "本田"
-        @user.first_name = "圭佑"
+        @user.family_name = '本田'
+        @user.first_name = '圭佑'
         expect(@user).to be_valid
       end
       it 'family_name_kanaとfirst_name_kanaがカナ文字なら登録できる' do
-        @user.family_name_kana = "ホンダ"
-        @user.first_name_kana = "ケイスケ"
+        @user.family_name_kana = 'ホンダ'
+        @user.first_name_kana = 'ケイスケ'
         expect(@user).to be_valid
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Email can't be blank"
       end
       it 'passwordが空では登録できない' do
-        @user.password = '' 
+        @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Password can't be blank"
       end
@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
       it 'メールアドレスは、@を含まないと登録できない' do
         @user.email = 'testtest.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
+        expect(@user.errors.full_messages).to include 'Email is invalid'
       end
       it 'passwordが5文字以下では登録できない' do
         @user.password = '00000'
@@ -92,32 +92,31 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'パスワードは半角英数字混同出ないと登録できない' do
-        @user.password = '111111' 
+        @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password には英字と数字の両方を含めて設定してください"
+        expect(@user.errors.full_messages).to include 'Password には英字と数字の両方を含めて設定してください'
       end
       it 'family_nameは、全角（漢字・ひらがな・カタカナ）でないと登録できない' do
-        @user.family_name = "111"
+        @user.family_name = '111'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Family name 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'Family name 全角文字を使用してください'
       end
       it 'first_nameは、全角（漢字・ひらがな・カタカナ）でないと登録できない' do
-        @user.first_name = "222"
+        @user.first_name = '222'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name 全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'First name 全角文字を使用してください'
       end
       it 'family_name_kanaは、全角（カタカナ）でないと登録できない' do
-        @user.family_name_kana = "ほんだ"
+        @user.family_name_kana = 'ほんだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Family name kana カナ文字を使用してください"
+        expect(@user.errors.full_messages).to include 'Family name kana カナ文字を使用してください'
       end
       it 'first_name_kanaは、全角（カタカナ）でないと登録できない' do
-        @user.first_name_kana = "けいすけ"
+        @user.first_name_kana = 'けいすけ'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name kana カナ文字を使用してください"
+        expect(@user.errors.full_messages).to include 'First name kana カナ文字を使用してください'
       end
-
     end
   end
 end
