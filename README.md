@@ -24,6 +24,7 @@
 | ------------- | ---------- | ------------------------------ |
 | name          | string     | null: false                    |
 | price         | integer    | null: false                    |
+| text          | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | status_id     | integer    | null: false                    |
 | deli_price_id | integer    | null: false                    |
