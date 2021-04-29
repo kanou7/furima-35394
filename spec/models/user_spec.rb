@@ -129,7 +129,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include 'First name kana カナ文字を使用してください'
       end
-      
     end
   end
 end
