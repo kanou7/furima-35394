@@ -74,8 +74,18 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
-      it 'priceは半角数字出ないと保存できない' do
-        @item.price = '３００'
+      it 'priceは全角文字では保存できない' do
+        @item.price = 'あ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is not a number'
+      end
+      it 'priceは半角英数混合では保存できない' do
+        @item.price = '1a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is not a number'
+      end
+      it 'priceは半角英語だけでは保存できない' do
+        @item.price = 'a'
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is not a number'
       end
