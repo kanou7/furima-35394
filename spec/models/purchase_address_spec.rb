@@ -55,6 +55,11 @@ RSpec.describe PurchaseAddress, type: :model do
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Phone num is invalid')
       end
+      it '電話番号が英数混合では保存できないこと' do
+        @purchase_address.phone_num = '1234567891a'
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include('Phone num is invalid')
+      end
       it 'userが紐付いていないと保存できないこと' do
         @purchase_address.user_id = nil
         @purchase_address.valid?
